@@ -13,16 +13,27 @@ public class PersonQueue
     /// <param name="person">The person to add</param>
     public void Enqueue(Person person)
     {
-        _queue.Insert(0, person);
+        _queue.Add(person);
     }
 
+    /// <summary>
+    /// Remove and return the next person from the queue
+    /// </summary>
     public Person Dequeue()
     {
+        if (IsEmpty())
+        {
+            throw new InvalidOperationException("Queue is empty.");
+        }
+
         var person = _queue[0];
         _queue.RemoveAt(0);
         return person;
     }
 
+    /// <summary>
+    /// Check if the queue is empty
+    /// </summary>
     public bool IsEmpty()
     {
         return Length == 0;
